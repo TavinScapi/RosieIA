@@ -519,3 +519,43 @@ input {
         z-index: 1000;
     }
 }
+
+
+/* Estilo da imagem do bot */
+.bot-image {
+    width: 40px;  /* Ajuste o tamanho conforme necessário */
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;  /* Distância entre a imagem e o texto */
+    vertical-align: middle;
+}
+
+/* Estilo para o conteúdo da mensagem */
+.message-content {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo do botão de copiar */
+.btn-copiar {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo do ícone de copiar e check */
+.btn-copiar i {
+    transition: transform 0.3s ease;  /* Transição suave para mudança de ícone */
+}
+
+/* Efeito de hover no botão de copiar */
+.btn-copiar:hover {
+    background-color: #45a049;
+}
