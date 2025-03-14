@@ -27,10 +27,78 @@ function adicionarMensagem(texto, classe) {
     let chat = document.getElementById("chat");
     let mensagem = document.createElement("div");
     mensagem.classList.add("message", classe);
-    mensagem.innerText = texto;
+
+    // Se for uma mensagem do bot, exibe o texto sem o "Rosie:"
+    if (classe === "bot") {
+        // Cria a mensagem sem o "Rosie:"
+        texto = texto.replace(/^Rosie:\s*/, "");
+
+        // Cria um contêiner para a mensagem e a imagem (caso queira posicionar a imagem antes do texto)
+        let mensagemConteiner = document.createElement("div");
+        mensagemConteiner.classList.add("message-content");
+
+        // Cria a imagem do bot
+        let imagemBot = document.createElement("img");
+        imagemBot.src = imageUrl; // Usando a variável com o caminho correto
+        imagemBot.alt = "Rosie";
+        imagemBot.classList.add("bot-image");
+
+        // Adiciona o texto da mensagem
+        let textoMensagem = document.createElement("p");
+        textoMensagem.innerText = texto;
+
+        // Adiciona a imagem e o texto ao contêiner
+        mensagemConteiner.appendChild(imagemBot);
+        mensagemConteiner.appendChild(textoMensagem);
+
+        // Cria o botão de copiar
+        let botaoCopiar = document.createElement("button");
+        botaoCopiar.classList.add("btn-copiar");
+
+        // Adiciona o ícone de copiar ao botão
+        let iconeCopiar = document.createElement("i");
+        iconeCopiar.classList.add("fas", "fa-copy");
+        botaoCopiar.appendChild(iconeCopiar);
+
+        // Adiciona o evento para copiar o texto da mensagem
+        botaoCopiar.onclick = function () {
+            copiarMensagem(texto, iconeCopiar);
+        };
+
+        // Adiciona o contêiner da mensagem e o botão de copiar
+        mensagem.appendChild(mensagemConteiner);
+        mensagem.appendChild(botaoCopiar);
+    } else {
+        // Caso seja outra classe, apenas a mensagem é adicionada normalmente
+        mensagem.innerText = texto;
+    }
+
     chat.appendChild(mensagem);
     chat.scrollTop = chat.scrollHeight;
 }
+
+
+function copiarMensagem(texto, iconeCopiar) {
+    let tempInput = document.createElement("input");
+    document.body.appendChild(tempInput);
+    tempInput.value = texto;
+    tempInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempInput);
+
+    // Troca o ícone de copiar para check
+    iconeCopiar.classList.remove("fa-copy");
+    iconeCopiar.classList.add("fa-check");
+
+    // Após 2 segundos, volta o ícone para "copiar"
+    setTimeout(function () {
+        iconeCopiar.classList.remove("fa-check");
+        iconeCopiar.classList.add("fa-copy");
+    }, 2000);
+
+}
+
+
 
 function adicionarAnimacaoDigitacao() {
     let chat = document.getElementById("chat");
@@ -170,4 +238,3 @@ window.onclick = function (event) {
     }
 };
 
-        

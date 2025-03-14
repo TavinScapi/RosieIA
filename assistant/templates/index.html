@@ -62,6 +62,7 @@
     <div class="chat-container" id="chat"></div>
     <h1>Olá meu chamo Rosie</h1>
     <h3>Como posso te ajudar?</h3>
+    
     <div class="input-container">
         <div class="input-wrapper">
             <input type="text" id="pergunta" placeholder="Pergunte alguma coisa" oninput="toggleIcon()"
@@ -73,10 +74,15 @@
         </div>
         <div class="button-group">
             <button class="btn"><i class="fas fa-plus"></i> Anexar</button>
-            <button class="btn"><i class="fas fa-globe"></i> Pesquisar</button>
             <button class="btn"><i class="fas fa-lightbulb"></i> Refletir</button>
+            <button class="btn"><i class="fas fa-microphone"></i> Falar</button>
         </div>
     </div>
+
+    <script>
+        var imageUrl = "{% static 'images/profile-pic.jpg' %}";
+    </script>
+    
 
     <footer>
         &copy; 2025 RosieAI. Todos os direitos reservados.
