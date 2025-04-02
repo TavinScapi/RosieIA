@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description"
         content="RosieAI é um chatbot inteligente, desenvolvido para automatizar conversas e oferecer soluções rápidas e eficientes.">
@@ -24,50 +24,48 @@
     <meta property="og:image" content="{% static 'images/rosie-ai-thumbnail.jpg' %}">
     <meta property="og:url" content="https://www.exemplo.com/rosieai">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-
 
 <body>
     <header>
-        <div class="header-left">
-            <div class="dropdown">
-                <button class="btn-dropdown" onclick="toggleDropdown('config-dropdown', 'arrow-config')">
-                    <i class="fas fa-cog"></i> <!-- Ícone de engrenagem -->
-                    <span class="arrow arrow-config"></span>
-                </button>
-                <div id="config-dropdown" class="dropdown-content">
-                    <a href="#">Configurações</a>
-                    <a href="#">Sair</a>
-                </div>
+        <div class="menu-logo">
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
             </div>
-            <span>RosieAI</span>
-        </div>
-        <div class="header-right">
-            <div class="dropdown">
-                <button class="btn-dropdown" onclick="toggleDropdown('user-dropdown', 'arrow-user')">
-                    <i class="fas fa-user"></i> Entrar
-                    <span class="arrow arrow-user"></span>
-                </button>
-                <div id="user-dropdown" class="dropdown-content">
-                    <a href="#">Login</a>
-                    <a href="#">Registrar</a>
-                </div>
-            </div>
-            <img src="{% static 'images/profile-pic.jpg' %}" alt="Foto" class="profile-pic">
+            <div class="logo">RosieAI</div>
         </div>
     </header>
+    <nav class="sidebar" id="sidebar">
+        <ul class="nav-links">
+            <li><a href="#" onclick="resetPage()" id="novoChat">Novo Chat</a></li>
+            <hr class="divider">
+            <li><a href="{% url 'blob_animation' %}" id="sobre">Sobre</a></li>
+            <li><a href="#" onclick="toggleConfig()" id="config">Configurações</a></li>
+            <li><a href="#" id="contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <div class="config-container" id="configContainer">
+        <h2 id="tituloConfig">Configurações</h2>
+        <label for="idioma" id="labelIdioma">Idioma:</label>
+        <select id="idioma" onchange="changeLanguage()">
+            <option value="pt">Português</option>
+            <option value="en">Inglês</option>
+        </select>
+        <br>
+    </div>
+    <div id="blob-container">
+    </div>
     
 
     <div class="chat-container" id="chat"></div>
-    <h1>Olá meu chamo Rosie</h1>
+    <h1>Olá, meu nome é Rosie</h1>
     <h3>Como posso te ajudar?</h3>
-    
     <div class="input-container">
         <div class="input-wrapper">
             <input type="text" id="pergunta" placeholder="Pergunte alguma coisa" oninput="toggleIcon()"
                 onkeydown="handleKeyPress(event)">
-            <button id="btnEnviar" onclick="enviarPergunta()">
+            <button id="btnEnviar" onclick="enviarPergunta()" aria-label="Enviar mensagem" role="button">
                 <span id="btnText">Enviar</span>
                 <i id="btnIcon" class="fas fa-paper-plane" style="display: none;"></i>
             </button>
@@ -82,7 +80,7 @@
     <script>
         var imageUrl = "{% static 'images/profile-pic.jpg' %}";
     </script>
-    
+
 
     <footer>
         &copy; 2025 RosieAI. Todos os direitos reservados.

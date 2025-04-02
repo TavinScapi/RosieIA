@@ -23,3 +23,6 @@ from django.shortcuts import render
 def rosie_interface(request):
     return render(request, "index.html")
 
+
+def blob_animation(request):
+    return render(request, 'blob_animation.html')

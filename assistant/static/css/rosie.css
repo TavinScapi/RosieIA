@@ -19,14 +19,14 @@ body {
 
 header {
     width: 100%;
-    padding: 10px 20px;
-    background-color: #00000070;
+    padding: 12px 20px;
+    background-color: #222;
     color: white;
-    font-size: 24px;
+    font-size: 16px;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 10001;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,120 +34,98 @@ header {
     /* Inclui o padding no cálculo do tamanho */
 }
 
-.header-left,
-.header-right {
-    display: flex;
-    align-items: center;
-    /* Alinha os itens verticalmente */
+h1, h3{
+    z-index: 1;
+    color: #ffffff;
 }
 
-.header-left span {
-    font-size: 24px;
+.menu-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 1.5em;
     font-weight: bold;
-    margin-right: 15px;
-    /* Espaço entre o nome e o botão de config */
-}
-
-.btn-config,
-.btn-select {
-    padding: 8px 15px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
     cursor: pointer;
-    font-size: 14px;
-    margin-right: 10px;
-    /* Espaço entre os botões */
 }
 
-.btn-config:hover,
-.btn-select:hover {
-    background-color: #45a049;
-    /* Cor ao passar o mouse sobre o botão */
-}
-
-.profile-pic {
-    width: 35px;
-    /* Ajusta o tamanho da foto */
-    height: 35px;
-    border-radius: 50%;
-    /* Deixa a foto redonda */
-    object-fit: cover;
-    /* Ajusta a imagem para cobrir o espaço sem distorcer */
-    margin-left: 10px;
-    /* Adiciona um pequeno espaço entre a imagem e o botão */
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.btn-dropdown {
-    background-color: #2D2F36;
-    /* Cor escura */
-    color: #C7C9D3;
-    /* Cinza claro */
-    padding: 10px 15px;
-    border: none;
+.menu-toggle {
+    font-size: 1.5em;
     cursor: pointer;
-    border-radius: 10px;
-    width: 200px;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 16px;
-    font-weight: 500;
-    position: relative;
 }
 
-
-.btn-dropdown i {
-    font-size: 18px;
-}
-
-.arrow {
-    margin-left: auto;
-    width: 8px;
-    height: 8px;
-    border-left: 2px solid #C7C9D3;
-    border-bottom: 2px solid #C7C9D3;
-    transform: rotate(-45deg);
-    transition: transform 0.3s;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 150%;
-    background-color: #3A3D46;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    min-width: 200px;
-    border-radius: 10px;
-}
-
-.dropdown-content a {
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #333;
     color: white;
-    padding: 12px;
+    padding-top: 60px;
+    transition: left 0.3s ease;
+    z-index: 10000;
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links li {
+    padding: 15px;
+    text-align: center;
+}
+
+.nav-links a {
+    color: white;
     text-decoration: none;
+    font-size: 1.2em;
     display: block;
-    border-radius: 10px;
 }
 
-.dropdown-content a:hover {
-    background-color: #50525A;
+.divider {
+    border: none;
+    height: 1px;
+    background: #555;
+    margin: 10px 20px;
 }
 
+.config-container {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 10001;
+}
 
+.config-container.active {
+    display: block;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+}
 
 footer {
     width: 100%;
     padding: 10px;
-    color: white;
+    color: #ffffff;
     text-align: center;
     font-size: 14px;
     position: fixed;
@@ -382,23 +360,8 @@ input {
 
 @media screen and (max-width: 768px) {
     header {
-        font-size: 20px;
-        padding: 10px;
-    }
-
-    .btn-config,
-    .btn-select {
-        padding: 6px 12px;
-        font-size: 12px;
-    }
-
-    .profile-pic {
-        width: 30px;
-        height: 30px;
-    }
-
-    .dropdown-content {
-        min-width: 150px;
+        font-size: 16px;
+        padding: 7px;
     }
 
     .chat-container {
@@ -435,31 +398,6 @@ input {
 }
 
 @media screen and (max-width: 480px) {
-    header {
-        font-size: 18px;
-        flex-direction: column;
-        align-items: center;
-        padding: 8px;
-    }
-
-    .header-left,
-    .header-right {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .btn-config,
-    .btn-select {
-        padding: 5px 10px;
-        font-size: 10px;
-        margin-right: 0;
-    }
-
-    .profile-pic {
-        width: 25px;
-        height: 25px;
-    }
-
     .chat-container {
         max-height: 250px;
         margin-top: 40px;
@@ -497,21 +435,27 @@ input {
         padding: 5px 10px;
         font-size: 10px;
     }
-}
 
-@media screen and (max-width: 768px) {
-    header {
+    footer {
         display: none;
     }
 
+    h1{
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 768px) {
     .chat-container {
         margin-top: 20px;
-        margin-bottom: 60px; /* Garante espaço para o input-container */
+        margin-bottom: 60px;
+        /* Garante espaço para o input-container */
     }
 
     .input-container {
         position: fixed;
-        bottom: 40px; /* Mantém acima do footer */
+        bottom: 40px;
+        /* Mantém acima do footer */
         left: 50%;
         transform: translateX(-50%);
         width: 90%;
@@ -523,10 +467,12 @@ input {
 
 /* Estilo da imagem do bot */
 .bot-image {
-    width: 40px;  /* Ajuste o tamanho conforme necessário */
+    width: 40px;
+    /* Ajuste o tamanho conforme necessário */
     height: 40px;
     border-radius: 50%;
-    margin-right: 10px;  /* Distância entre a imagem e o texto */
+    margin-right: 10px;
+    /* Distância entre a imagem e o texto */
     vertical-align: middle;
 }
 
@@ -552,10 +498,23 @@ input {
 
 /* Estilo do ícone de copiar e check */
 .btn-copiar i {
-    transition: transform 0.3s ease;  /* Transição suave para mudança de ícone */
+    transition: transform 0.3s ease;
+    /* Transição suave para mudança de ícone */
 }
 
 /* Efeito de hover no botão de copiar */
 .btn-copiar:hover {
     background-color: #45a049;
+}
+
+
+
+
+canvas {
+    position: absolute;
+    width: 25%;
+    height: 20%;
+    z-index: -100;
+    margin-top: 110px;
+    margin-left: 260px;
 }
