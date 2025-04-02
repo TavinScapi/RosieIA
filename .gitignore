@@ -1,0 +1,10 @@
+# Arquivos de ambiente
+.env
+
+# Dependências (caso use Node.js ou Python)
+node_modules/
+venv/
+
+# Arquivos de build e cache
+*.log
+.DS_Store
